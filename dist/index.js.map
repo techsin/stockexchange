@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.ts"],"names":[],"mappings":";;AAAA,OAAO,CAAC,GAAG,CAAC,IAAI,CAAC,CAAC;AAClB,OAAO,CAAC,GAAG,CAAC,GAAG,CAAC,CAAC;AACjB,+BAAyB;AAEzB,OAAO,CAAC,GAAG,CAAC,cAAG,CAAC,CAAC","file":"index.js","sourcesContent":["console.log(\"hi\");\r\nconsole.log(333);\r\nimport abc from './test';\r\n\r\nconsole.log(abc);\r\n\r\n"]}
