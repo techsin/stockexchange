@@ -7,7 +7,7 @@ const hotware = PRODUCTION ? [] : ["webpack/hot/dev-server", "webpack-hot-middle
 const entry = {};
 
 //load all entry points
-glob.sync("./frontend/js/*.js").forEach(function (fpath) {
+glob.sync("./app/frontend/js/*.js").forEach(function (fpath) {
 	let filename = path.basename(fpath, path.extname(fpath));
 	entry[filename] = [...hotware, fpath]
 });
@@ -42,7 +42,7 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ]
   },
   output: {
-	path: path.join(__dirname, "./public/js"),
+	path: path.join(__dirname, "./dist/public/js"),
 	publicPath: "/js/",
 	filename: "[name].js"
   }

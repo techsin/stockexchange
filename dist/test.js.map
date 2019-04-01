@@ -1,1 +1,0 @@
-{"version":3,"sources":["test.ts"],"names":[],"mappings":";;AAAA,SAAwB,GAAG;IACvB,OAAO,CAAC,GAAG,CAAC,OAAO,CAAC,CAAC;AACzB,CAAC;AAFD,sBAEC","file":"test.js","sourcesContent":["export default function abc(): void {\r\n    console.log('nanin');\r\n}"]}

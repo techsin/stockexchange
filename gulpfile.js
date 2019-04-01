@@ -12,7 +12,7 @@ const gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     cleanCSS = require('gulp-clean-css'),
     ts = require("gulp-typescript"),
-    tsProject = ts.createProject('./backend/tsconfig.json'),
+    tsProject = ts.createProject('./tsconfig.json'),
     sourcemaps = require('gulp-sourcemaps');
 
 
@@ -25,7 +25,7 @@ gulp.task('browserSync', browserSyncFn);
 // less to CSS and Inject via BrowserSync
 function lessFn(done) {
     gulp
-        .src('./frontend/css/**/*.less')
+        .src('./app/frontend/css/**/*.less')
         .pipe(less({ outputStyle: 'compressed' }))
         .on('error', swallowError)
         .pipe(
@@ -35,7 +35,7 @@ function lessFn(done) {
             })
         )
         .pipe(cleanCSS())
-        .pipe(gulp.dest('./public/css/'))
+        .pipe(gulp.dest('./dist/public/css/'))
         .pipe(browserSync.stream());
     done();
 };
@@ -43,9 +43,9 @@ function lessFn(done) {
 function nodemonFn(done) {
     var started = false;
     nodemon({
-        script: 'index.js',
+        script: 'dist/server/index.js',
         nodeArgs: ['--inspect', '--nolazy'], //nolazy makes nodejs load all js files even if the haven't been accessed yet.
-        ignore: ['frontend/', 'gulpfile.js', 'webpack.config.js', 'public/']
+        ignore: ['app/frontend/', 'gulpfile.js', 'webpack.config.js', 'dist/public/']
     })
         .on('start', function () {
             if (!started) {
@@ -60,11 +60,11 @@ function nodemonFn(done) {
 }
 
 function typescriptFn(done) {
-    gulp.src("backend/**/*.ts") // or tsProject.src()
+    gulp.src("app/backend/**/*.ts") // or tsProject.src()
         .pipe(sourcemaps.init())
         .pipe(tsProject()).js
         .pipe(sourcemaps.write('.')) 
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/server'));
     done();
 }
 
@@ -90,13 +90,11 @@ function browserSyncFn(done){
 
 // Main Entry
 gulp.task('default', gulp.series(gulp.parallel('typescript', 'less'), 'nodemon', function (done) {
-    gulp.watch('frontend/css/**/*.less', gulp.series('less'));
-    gulp.watch('backend/index.ts', gulp.series('typescript'));
-    gulp.watch('views/**/*.pug').on('change', browserSync.reload);
+    gulp.watch('app/frontend/css/**/*.less', gulp.series('less'));
+    gulp.watch('app/backend/index.ts', gulp.series('typescript'));
+    gulp.watch('app/backend/views/**/*.pug').on('change', browserSync.reload);
     done();
 }));
-
-
 
 function swallowError(error) {
     console.log(error.toString());
