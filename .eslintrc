@@ -1,0 +1,56 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "@typescript-eslint/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 9,
+        "sourceType": "module"
+    },
+    "env": {
+        "commonjs": true,
+        "node": true,
+        "jest": true
+    },
+    "rules": {
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "no-const-assign": "warn",
+        "no-this-before-super": "warn",
+        "no-undef": "error",
+        "no-unreachable": "warn",
+        "no-unused-vars": [
+            "warn",
+            {
+                "argsIgnorePattern": "res|next|^err"
+            }
+        ],
+        "constructor-super": "warn",
+        "valid-typeof": "warn",
+        "no-console": "error",
+        "semi": "error",
+        "quotes": [
+            "error",
+            "single",
+            {
+                "avoidEscape": true,
+                "allowTemplateLiterals": true
+            }
+        ]
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
+}
