@@ -1,4 +1,5 @@
-/frontend/jw/lib/**
+/frontend/js/lib/**
 /public/**
-webpack.config.js
 /dist/**
+webpack.config.js
+gulpfile.js

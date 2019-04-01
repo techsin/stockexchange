@@ -4,5 +4,3 @@ function abc() {
     console.log('nanin');
 }
 exports.default = abc;
-
-//# sourceMappingURL=test.js.map
